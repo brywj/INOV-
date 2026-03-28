@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INOV Consulting Engineer Sdn Bhd</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy: #1a3a5c;
+      --blue: #2e6da4;
+      --steel: #4a90c4;
+      --light: #e8f0f8;
+      --white: #ffffff;
+      --gray: #f4f6f9;
+      --text: #333333;
+      --muted: #666666;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 64px;
+      z-index: 999;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      border-bottom: 2px solid var(--light);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 40px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--navy);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--steel); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(135deg, rgba(26,58,92,0.88) 0%, rgba(46,109,164,0.75) 100%),
+        url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1600&q=80') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      padding: 100px 40px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      right: -100px; top: 0; bottom: 0;
+      width: 55%;
+      background: rgba(74,144,196,0.15);
+      clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    .hero-content {
+      max-width: 680px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(74,144,196,0.3);
+      border: 1px solid var(--steel);
+      color: #a8d4f5;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(32px, 5vw, 58px);
+      font-weight: 800;
+      color: white;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-content h1 span { color: var(--steel); }
+
+    .hero-content p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 36px;
+      max-width: 520px;
+    }
+
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .btn {
+      padding: 14px 32px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: all 0.25s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--steel);
+      color: white;
+    }
+    .btn-primary:hover { background: #3a7fb8; transform: translateY(-2px); }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.6);
+      color: white;
+    }
+    .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.1); }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 56px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      flex-wrap: wrap;
+    }
+
+    .stat { color: white; }
+    .stat-num { font-size: 32px; font-weight: 800; color: var(--steel); display: block; }
+    .stat-label { font-size: 12px; color: rgba(255,255,255,0.65); letter-spacing: 0.5px; text-transform: uppercase; }
+
+    /* ── SECTIONS ── */
+    section { padding: 80px 40px; }
+
+    .section-tag {
+      display: inline-block;
+      background: var(--light);
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 2px;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: clamp(26px, 3.5vw, 38px);
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 14px;
+    }
+
+    .section-intro {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 600px;
+      margin-bottom: 48px;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    /* ── ABOUT ── */
+    #about { background: var(--gray); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 16px;
+      font-size: 15px;
+    }
+
+    .about-highlights {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .highlight-item {
+      background: white;
+      border-left: 4px solid var(--steel);
+      padding: 16px 18px;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .highlight-item strong {
+      display: block;
+      color: var(--navy);
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+
+    .highlight-item span { font-size: 13px; color: var(--muted); }
+
+    .about-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 6px;
+      padding: 28px 24px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      border-top: 4px solid var(--steel);
+    }
+
+    .stat-card .big { font-size: 38px; font-weight: 800; color: var(--navy); display: block; }
+    .stat-card .label { font-size: 13px; color: var(--muted); margin-top: 6px; }
+
+    /* ── SERVICES ── */
+    #services { background: white; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--gray);
+      border-radius: 6px;
+      padding: 32px 28px;
+      transition: all 0.3s;
+      border-bottom: 4px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-bottom-color: var(--steel);
+      box-shadow: 0 12px 32px rgba(46,109,164,0.15);
+    }
+
+    .service-icon {
+      width: 52px; height: 52px;
+      background: var(--navy);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+
+    .service-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .service-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .service-card ul li {
+      font-size: 13px;
+      color: var(--muted);
+      padding: 4px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .service-card ul li::before {
+      content: '›';
+      color: var(--steel);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--gray); }
+
+    .project-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 9px 22px;
+      border: 2px solid var(--navy);
+      background: transparent;
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.5px;
+    }
+
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--navy);
+      color: white;
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+
+    .project-card {
+      background: white;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.14);
+    }
+
+    .project-thumb {
+      height: 180px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s;
+    }
+
+    .project-card:hover .project-thumb img {
+      transform: scale(1.05);
+    }
+
+    .project-info { padding: 20px; }
+    .project-info h4 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .project-info p { font-size: 13px; color: var(--muted); }
+    .project-tag {
+      display: inline-block;
+      background: var(--light);
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 2px;
+      margin-top: 10px;
+    }
+
+    /* ── TEAM ── */
+    #team { background: white; }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+
+    .team-card {
+      text-align: center;
+      padding: 28px 20px;
+      background: var(--gray);
+      border-radius: 6px;
+      transition: all 0.3s;
+    }
+
+    .team-card:hover {
+      background: var(--navy);
+      transform: translateY(-4px);
+    }
+
+    .team-card:hover h4, .team-card:hover p { color: white; }
+    .team-card:hover .team-role { color: var(--steel); }
+
+    .team-avatar {
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy), var(--steel));
+      display: flex; align-items: center; justify-content: center;
+      color: white;
+      font-size: 24px;
+      font-weight: 800;
+      margin: 0 auto 16px;
+      border: 3px solid var(--steel);
+      overflow: hidden;
+    }
+
+    .team-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 50%;
+    }
+
+    .team-card h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .team-role { font-size: 12px; color: var(--steel); font-weight: 600; margin-bottom: 6px; }
+    .team-card p { font-size: 12px; color: var(--muted); }
+
+    /* ── CLIENTS ── */
+    #clients { background: var(--navy); }
+    #clients h2 { color: white; }
+    #clients .section-tag { background: rgba(74,144,196,0.2); color: var(--steel); }
+    #clients .section-intro { color: rgba(255,255,255,0.6); }
+
+    .clients-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    .client-badge {
+      background: white;
+      border-radius: 8px;
+      padding: 16px 12px;
+      text-align: center;
+      transition: all 0.25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100px;
+    }
+
+    .client-badge:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+
+    .client-badge img {
+      max-width: 100%;
+      max-height: 70px;
+      object-fit: contain;
+      filter: grayscale(20%);
+      transition: filter 0.25s;
+    }
+
+    .client-badge:hover img {
+      filter: grayscale(0%);
+    }
+
+    /* ── ACCREDITATIONS ── */
+    #accreditations { background: var(--light); }
+
+    .accred-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .accred-card {
+      background: white;
+      border-radius: 6px;
+      padding: 28px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+      border-left: 5px solid var(--steel);
+    }
+
+    .accred-icon {
+      width: 48px; height: 48px;
+      background: var(--navy);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .accred-card h4 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .accred-card p { font-size: 13px; color: var(--muted); }
+
+    /* ── CONTACT ── */
+    #contact { background: white; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .contact-info h3 { font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 20px; }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .contact-icon {
+      width: 44px; height: 44px;
+      background: var(--navy);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .contact-item strong { display: block; font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+    .contact-item span { font-size: 15px; color: var(--navy); font-weight: 500; }
+
+    .contact-form { background: var(--gray); border-radius: 8px; padding: 36px; }
+    .contact-form h3 { font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 24px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .form-group { margin-bottom: 16px; }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 11px 14px;
+      border: 2px solid #dce3ec;
+      border-radius: 4px;
+      font-size: 14px;
+      color: var(--text);
+      background: white;
+      transition: border-color 0.2s;
+      font-family: inherit;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: var(--steel); }
+
+    .form-group textarea { min-height: 110px; resize: vertical; }
+
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--navy);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+
+    .btn-submit:hover { background: var(--blue); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0e2236;
+      color: rgba(255,255,255,0.6);
+      padding: 40px;
+      text-align: center;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding-bottom: 28px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-brand { display: flex; align-items: center; gap: 12px; }
+    .footer-brand img { height: 38px; width: auto; filter: brightness(0) invert(1); opacity: 0.85; }
+
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--steel); }
+
+    footer p { font-size: 13px; }
+    footer p span { color: rgba(255,255,255,0.35); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 4px;
+      background: linear-gradient(90deg, var(--navy), var(--steel), var(--navy));
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      section { padding: 60px 20px; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 36px; }
+      .about-cards { grid-template-columns: 1fr 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      #hero { padding: 90px 20px 50px; }
+      .hero-stats { gap: 24px; }
+      .footer-top { flex-direction: column; align-items: center; text-align: center; }
+    }
+
+    /* ── SCROLL REVEAL (simple) ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── TEAM CARD CLICKABLE ── */
+    .team-card { cursor: pointer; }
+
+    .team-card .view-profile {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--steel);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .team-card:hover .view-profile { color: white; }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 25, 45, 0.75);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(4px);
+    }
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: white;
+      border-radius: 10px;
+      max-width: 680px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+      animation: modalIn 0.28s ease;
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(18px) scale(0.97); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 28px 28px 20px;
+      border-bottom: 2px solid var(--light);
+      position: sticky;
+      top: 0;
+      background: white;
+      z-index: 1;
+    }
+
+    .modal-avatar {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy), var(--steel));
+      display: flex; align-items: center; justify-content: center;
+      color: white;
+      font-size: 20px;
+      font-weight: 800;
+      flex-shrink: 0;
+      border: 3px solid var(--steel);
+      overflow: hidden;
+    }
+    .modal-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 50%;
+    }
+
+    .modal-title { flex: 1; }
+    .modal-title h3 { font-size: 20px; font-weight: 800; color: var(--navy); margin-bottom: 3px; }
+    .modal-title .modal-role { font-size: 13px; font-weight: 600; color: var(--steel); }
+
+    .modal-close {
+      background: var(--light);
+      border: none;
+      border-radius: 50%;
+      width: 36px; height: 36px;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--navy);
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+    .modal-close:hover { background: #dce3ec; }
+
+    .modal-body { padding: 24px 28px 28px; }
+
+    .modal-section { margin-bottom: 22px; }
+    .modal-section:last-child { margin-bottom: 0; }
+
+    .modal-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--steel);
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--light);
+    }
+
+    .modal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .modal-tag {
+      background: var(--light);
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 3px;
+    }
+
+    .modal-bio {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .modal-projects {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .modal-projects li {
+      font-size: 13px;
+      color: var(--muted);
+      padding: 5px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      border-bottom: 1px solid #f0f3f7;
+    }
+    .modal-projects li:last-child { border-bottom: none; }
+    .modal-projects li::before {
+      content: '›';
+      color: var(--steel);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .modal-career {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .modal-career li {
+      font-size: 13px;
+      color: var(--muted);
+      padding: 6px 0;
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 10px;
+      border-bottom: 1px solid #f0f3f7;
+    }
+    .modal-career li:last-child { border-bottom: none; }
+    .modal-career .yr {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--steel);
+      padding-top: 1px;
+    }
+
+    @media (max-width: 600px) {
+      .modal-header { padding: 20px 18px 16px; gap: 14px; }
+      .modal-body { padding: 18px 18px 22px; }
+      .modal-career li { grid-template-columns: 90px 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <img src="assets/inov-logo-cropped.png" alt="INOV Consulting Engineer">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#clients">Clients</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-badge">BEM Registered · Est. 2024</div>
+    <h1>Engineering <span>Solutions</span><br>Built on Trust</h1>
+    <p>Civil &amp; Structural Engineering Consultancy and Project Management — delivering innovative, efficient, and cost-effective engineering solutions across Malaysia.</p>
+    <div class="hero-btns">
+      <a href="#services" class="btn btn-primary">Our Services</a>
+      <a href="projects.html" class="btn btn-outline">View Projects</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">20+</span>
+        <span class="stat-label">Years Leadership</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">4</span>
+        <span class="stat-label">Core Disciplines</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">20+</span>
+        <span class="stat-label">Valued Clients</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">BEM</span>
+        <span class="stat-label">Registered Firm</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <span class="section-tag">About Us</span>
+        <h2>Trusted Partner in Engineering Excellence</h2>
+        <p>INOV Consulting Engineer Sdn Bhd is a Civil and Structural Engineering Consultancy established in 2024, registered with the Board of Engineers Malaysia (BEM).</p>
+        <p>Led by <strong>Ir. Ng Wen Yeh</strong>, our Managing Director with over 20 years of experience, we specialise in Civil, Structural, Geotechnical Engineering and Project Management consultancy services.</p>
+        <p>We prioritise good engineering practices — ensuring every design proposal is optimised for structural integrity, cost efficiency, and timely project completion.</p>
+        <div class="about-highlights">
+          <div class="highlight-item">
+            <strong>Ir. Ng Wen Yeh</strong>
+            <span>Managing Director, PEPC</span>
+          </div>
+          <div class="highlight-item">
+            <strong>BEM Registered</strong>
+            <span>Reg. No. BC-1918</span>
+          </div>
+          <div class="highlight-item">
+            <strong>MIEM Member</strong>
+            <span>Institution of Engineers Malaysia</span>
+          </div>
+          <div class="highlight-item">
+            <strong>SPAN Qualified</strong>
+            <span>Water Services — AWAM W1, W5, W7</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-cards reveal">
+        <div class="stat-card">
+          <span class="big">20+</span>
+          <span class="label">Years of Director's Experience</span>
+        </div>
+        <div class="stat-card">
+          <span class="big">4</span>
+          <span class="label">Engineering Disciplines</span>
+        </div>
+        <div class="stat-card">
+          <span class="big">800+</span>
+          <span class="label">Acres of Residential Projects</span>
+        </div>
+        <div class="stat-card">
+          <span class="big">10+</span>
+          <span class="label">Data Centre Projects</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <span class="section-tag">What We Do</span>
+    <h2>Our Engineering Services</h2>
+    <p class="section-intro">Comprehensive consultancy across civil, structural, geotechnical and project management disciplines — tailored to meet your project needs.</p>
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <div class="service-icon">🏗️</div>
+        <h3>Civil &amp; Infrastructure Engineering</h3>
+        <ul>
+          <li>Road &amp; drainage design</li>
+          <li>JKR road for RSA</li>
+          <li>Stormwater management</li>
+          <li>Flood analysis</li>
+          <li>Water supply &amp; IWSS</li>
+          <li>Sewerage reticulation &amp; treatment plant</li>
+        </ul>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">🏢</div>
+        <h3>Structural Engineering</h3>
+        <ul>
+          <li>High-rise — hotel, mall, office, condo</li>
+          <li>Luxury bungalow</li>
+          <li>Landed residential &amp; commercial</li>
+          <li>Industrial — warehouse &amp; factory</li>
+          <li>Data centres — local &amp; overseas</li>
+        </ul>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">📋</div>
+        <h3>Project Management &amp; Business Advisory</h3>
+        <ul>
+          <li>Project planning &amp; execution</li>
+          <li>Contractor coordination</li>
+          <li>Risk management &amp; mitigation</li>
+          <li>Resource allocation &amp; cost control</li>
+          <li>Regulatory compliance &amp; permit</li>
+          <li>Factory 'Pemutihan' works advisory</li>
+        </ul>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">⛰️</div>
+        <h3>Geotechnical Engineering</h3>
+        <ul>
+          <li>Slope stability study</li>
+          <li>Retaining wall design</li>
+          <li>Soft ground treatments</li>
+          <li>Foundation design</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS CTA -->
+<section id="projects" style="background: var(--gray);">
+  <div class="container" style="text-align: center;">
+    <span class="section-tag">Portfolio</span>
+    <h2>Current &amp; Completed Projects</h2>
+    <p class="section-intro" style="margin-left: auto; margin-right: auto;">Explore our full portfolio of projects across commercial, industrial, residential and data centre sectors throughout Malaysia.</p>
+    <a href="projects.html" class="btn btn-primary" style="display: inline-block; margin-top: 8px;">View All Projects →</a>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="container">
+    <span class="section-tag">Our People</span>
+    <h2>Leadership &amp; Key Engineers</h2>
+    <p class="section-intro">Our team of registered professional engineers brings decades of combined experience across every engineering discipline.</p>
+    <div class="team-grid">
+      <div class="team-card reveal" onclick="openModal('modal-ng-wen-yeh')">
+        <div class="team-avatar"><img src="assets/team/ir-ng-wen-yeh.png" alt="Ir. Ng Wen Yeh"></div>
+        <h4>Ir. Ng Wen Yeh</h4>
+        <div class="team-role">Managing Director</div>
+        <p>PEPC · MIEM · 20+ yrs experience · Univ. Malaya</p>
+        <span class="view-profile">View Profile →</span>
+      </div>
+      <div class="team-card reveal" onclick="openModal('modal-wong-khien-ping')">
+        <div class="team-avatar"><img src="assets/team/ir-wong-khien-ping.png" alt="Ir. Wong Khien Ping"></div>
+        <h4>Ir. Wong Khien Ping</h4>
+        <div class="team-role">Associate — C&S</div>
+        <p>BEM Registered · 8+ yrs · UTAR</p>
+        <span class="view-profile">View Profile →</span>
+      </div>
+      <div class="team-card reveal" onclick="openModal('modal-liew-sock-tin')">
+        <div class="team-avatar"><img src="assets/team/liew-sock-tin.png" alt="Liew Sock Tin"></div>
+        <h4>Liew Sock Tin</h4>
+        <div class="team-role">Associate — C&S</div>
+        <p>Graduate Engineer · MSc Contract Mgmt</p>
+        <span class="view-profile">View Profile →</span>
+      </div>
+      <div class="team-card reveal" onclick="openModal('modal-tew-chee-siang')">
+        <div class="team-avatar"><img src="assets/team/ir-tew-chee-siang.png" alt="Ir. Tew Chee Siang"></div>
+        <h4>Ir. Tew Chee Siang</h4>
+        <div class="team-role">Associate — Geotechnical</div>
+        <p>BEM Registered · 17+ yrs · Univ. Malaya</p>
+        <span class="view-profile">View Profile →</span>
+      </div>
+      <div class="team-card reveal" onclick="openModal('modal-kok-yow-loong')">
+        <div class="team-avatar"><img src="assets/team/ir-kok-yow-loong.png" alt="Ir. Dr. Kok Yow Loong"></div>
+        <h4>Ir. Dr. Kok Yow Loong</h4>
+        <div class="team-role">Associate — Geotechnical</div>
+        <p>PhD Cambridge · BEM Registered · 19+ yrs</p>
+        <span class="view-profile">View Profile →</span>
+      </div>
+      <div class="team-card reveal" onclick="openModal('modal-wayne-tan')">
+        <div class="team-avatar"><img src="assets/team/wayne-tan.png" alt="Wayne Tan"></div>
+        <h4>Wayne Tan</h4>
+        <div class="team-role">Design Manager</div>
+        <p>MSc Civil Eng · Cheng Kung Univ, Taiwan</p>
+        <span class="view-profile">View Profile →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section id="clients">
+  <div class="container">
+    <span class="section-tag">Our Clients</span>
+    <h2>Valued Clients</h2>
+    <p class="section-intro">We are proud to have worked with leading developers, corporations and government bodies across Malaysia and beyond.</p>
+    <div class="clients-grid">
+      <div class="client-badge"><img src="assets/clients/bridge-data-centre.png" alt="Bridge Data Centre"></div>
+      <div class="client-badge"><img src="assets/clients/scientex.png" alt="Scientex"></div>
+      <div class="client-badge"><img src="assets/clients/marvelane.png" alt="Marvelane"></div>
+      <div class="client-badge"><img src="assets/clients/guocoland.png" alt="Guocoland"></div>
+      <div class="client-badge"><img src="assets/clients/ikram.png" alt="IKRAM"></div>
+      <div class="client-badge"><img src="assets/clients/syabas.png" alt="SYABAS"></div>
+      <div class="client-badge"><img src="assets/clients/khk-group.png" alt="KHK Group"></div>
+      <div class="client-badge"><img src="assets/clients/mct.png" alt="MCT Bhd"></div>
+      <div class="client-badge"><img src="assets/clients/dutaland.png" alt="Dutaland"></div>
+      <div class="client-badge"><img src="assets/clients/jkr.png" alt="JKR Malaysia"></div>
+      <div class="client-badge"><img src="assets/clients/bina-plastic.png" alt="Bina Plastic Industries"></div>
+      <div class="client-badge"><img src="assets/clients/nature-century.png" alt="Nature Century Development"></div>
+      <div class="client-badge"><img src="assets/clients/bandaraya-johor-bahru.png" alt="Bandaraya Johor Bahru"></div>
+      <div class="client-badge"><img src="assets/clients/hishine.png" alt="Hishine Development Group"></div>
+      <div class="client-badge"><img src="assets/clients/tangxing.png" alt="Tangxing Pipe Jacking"></div>
+      <div class="client-badge"><img src="assets/clients/huashi.png" alt="Huashi"></div>
+      <div class="client-badge"><img src="assets/clients/perak.png" alt="Perak State"></div>
+      <div class="client-badge"><img src="assets/clients/fitiers.png" alt="Fitiers"></div>
+      <div class="client-badge"><img src="assets/clients/low-vat-group.png" alt="Low Vat Group"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCREDITATIONS -->
+<section id="accreditations">
+  <div class="container">
+    <span class="section-tag">Credentials</span>
+    <h2>Accreditations &amp; Registrations</h2>
+    <p class="section-intro">INOV is fully registered and accredited by the relevant Malaysian regulatory bodies.</p>
+    <div class="accred-grid">
+      <div class="accred-card reveal">
+        <div class="accred-icon">🏛️</div>
+        <div>
+          <h4>Board of Engineers Malaysia (BEM)</h4>
+          <p>Registered Consulting Engineer Firm — Civil Engineering<br>Reg. No: 1515-il.000-00000-BC-1918</p>
+        </div>
+      </div>
+      <div class="accred-card reveal">
+        <div class="accred-icon">💧</div>
+        <div>
+          <h4>SPAN — Qualified Person</h4>
+          <p>Water Industry Services Act 2006 (Akta 655)<br>AWAM W1, W5, W7, S1, S2, S5 &amp; S7 · QP No: QPAW0178</p>
+        </div>
+      </div>
+      <div class="accred-card reveal">
+        <div class="accred-icon">🔖</div>
+        <div>
+          <h4>Institution of Engineers Malaysia (IEM)</h4>
+          <p>Corporate members registered with MIEM — Professional Engineers with Practicing Certificate (PEPC)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <span class="section-tag">Get In Touch</span>
+    <h2>Contact Us</h2>
+    <p class="section-intro">Ready to discuss your project? Reach out to our team and we'll get back to you promptly.</p>
+
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3>Our Office</h3>
+
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <strong>Address</strong>
+            <span>No 74-1, Jalan SS15/4B, 47500 Subang Jaya, Selangor Darul Ehsan</span>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <strong>Phone</strong>
+            <span>+603-5612 6133</span>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <strong>Email</strong>
+            <span>inovcengineer@gmail.com</span>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">👤</div>
+          <div>
+            <strong>Contact Person</strong>
+            <span>Ir. Ng Wen Yeh — Managing Director</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form reveal">
+        <h3>Send Us a Message</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" placeholder="Your name" />
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" placeholder="+60 1X-XXX XXXX" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="your@email.com" />
+        </div>
+        <div class="form-group">
+          <label>Service Required</label>
+          <select>
+            <option value="">Select a service...</option>
+            <option>Civil &amp; Infrastructure Engineering</option>
+            <option>Structural Engineering</option>
+            <option>Project Management &amp; Advisory</option>
+            <option>Geotechnical Engineering</option>
+            <option>General Enquiry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Brief description of your project..."></textarea>
+        </div>
+        <button class="btn-submit">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM MODALS -->
+
+<!-- Modal: Ir. Ng Wen Yeh -->
+<div class="modal-overlay" id="modal-ng-wen-yeh" onclick="closeModalOnOverlay(event, 'modal-ng-wen-yeh')">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-avatar"><img src="assets/team/ir-ng-wen-yeh.png" alt="Ir. Ng Wen Yeh"></div>
+      <div class="modal-title">
+        <h3>Ir. Ng Wen Yeh</h3>
+        <div class="modal-role">Managing Director</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('modal-ng-wen-yeh')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <div class="modal-section-title">Education</div>
+        <p class="modal-bio">Bachelor of Civil Engineering, University of Malaya (1999)</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Credentials</div>
+        <div class="modal-tags">
+          <span class="modal-tag">PEPC — BEM Registered (2007)</span>
+          <span class="modal-tag">MIEM Member</span>
+          <span class="modal-tag">SPAN QP No. QPAW0178</span>
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">About</div>
+        <p class="modal-bio">More than 20 years of experience in civil and structural engineering consultancy and construction project management. Specialises in residential housing, commercial and industrial buildings, retaining walls, earthworks, road &amp; drainage, sewerage and water supply systems.</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Key Projects</div>
+        <ul class="modal-projects">
+          <li>Plaza Rakyat — 5 towers (31–96 storeys), Jalan Pudu, KL (Profit Consortium)</li>
+          <li>Bridge Data Centres III, Sedenak Johor &amp; Klang Valley</li>
+          <li>275kV TNB Substation for K2 Strategic Infrastructure, Sedenak</li>
+          <li>Housing mix development — 800+ acres, Kuala Selangor</li>
+          <li>Design &amp; Build: UNITEN Sepang, TNB Office Butterworth, USJ 1 Avenue Subang</li>
+          <li>River improvement works — Sg. Kelang, Sg. Damansara, Sg. Kayu Ara (JPS)</li>
+          <li>Luxury housing: Kota Harmoni Shah Alam, D'Prinstine Medini JB</li>
+          <li>Trauma Centre, University Hospital KL</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Career History</div>
+        <ul class="modal-career">
+          <li><span class="yr">2024 – Present</span><span>Managing Director, INOV Consulting Engineer Sdn Bhd</span></li>
+          <li><span class="yr">2008 – Present</span><span>Director, YNY Consulting Engineer / YNY Consulting Engineer Sdn Bhd</span></li>
+          <li><span class="yr">2008 – 2013</span><span>Associate Director, B&amp;G Concept Engineering Sdn Bhd</span></li>
+          <li><span class="yr">2007 – 2008</span><span>Contract &amp; Project Manager, Pembinaan KA Dinamik Sdn Bhd</span></li>
+          <li><span class="yr">2003 – 2007</span><span>Project Engineer, Modular Construction Technology Sdn Bhd</span></li>
+          <li><span class="yr">2001 – 2003</span><span>C&amp;S Engineer, Perunding Shaharin &amp; Associates</span></li>
+          <li><span class="yr">1999 – 2001</span><span>Graduate C&amp;S Design Engineer, Perunding Tegap Sdn Bhd</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Ir. Wong Khien Ping -->
+<div class="modal-overlay" id="modal-wong-khien-ping" onclick="closeModalOnOverlay(event, 'modal-wong-khien-ping')">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-avatar"><img src="assets/team/ir-wong-khien-ping.png" alt="Ir. Wong Khien Ping"></div>
+      <div class="modal-title">
+        <h3>Ir. Wong Khien Ping</h3>
+        <div class="modal-role">Associate — Civil &amp; Structural</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('modal-wong-khien-ping')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <div class="modal-section-title">Education</div>
+        <p class="modal-bio">Bachelor of Science in Civil Engineering, Universiti Tunku Abdul Rahman — UTAR (2011)</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Credentials</div>
+        <div class="modal-tags">
+          <span class="modal-tag">BEM Registered (2020)</span>
+          <span class="modal-tag">MIEM Member</span>
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">About</div>
+        <p class="modal-bio">More than 8 years of experience managing consultancy and site technical works. Specialises in RC structural and steel structural design, project management, infrastructural design, and temporary works.</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Key Projects</div>
+        <ul class="modal-projects">
+          <li>PNB 118 Tower — technical management for temporary works (main contractor)</li>
+          <li>Bangsar Link Bridge — alternative steel bridge design across KTM railway to LRT Bangsar</li>
+          <li>Rawang Housing Development — structural &amp; infra design for 3-phase, 247 units bungalow &amp; semi-D</li>
+          <li>Taylor Wharton Malaysia Factory — structural &amp; infra design for 2 factory blocks with heavy overhead cranes</li>
+          <li>Parcel F — technical management for 3 government office blocks (Package 1 &amp; 2)</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Career History</div>
+        <ul class="modal-career">
+          <li><span class="yr">2024 – Present</span><span>Associate, INOV Consulting Engineer Sdn Bhd</span></li>
+          <li><span class="yr">2018 – Present</span><span>Associate, YNY Consulting Engineer Sdn Bhd</span></li>
+          <li><span class="yr">2016 – 2018</span><span>Technical Engineer, Sunway Construction Sdn Bhd</span></li>
+          <li><span class="yr">2013 – 2016</span><span>Design Engineer, Perunding Rekamaju Sdn Bhd</span></li>
+          <li><span class="yr">2011 – 2013</span><span>Technical Engineer, Doshin Rubber Product (M) Sdn Bhd</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Liew Sock Tin -->
+<div class="modal-overlay" id="modal-liew-sock-tin" onclick="closeModalOnOverlay(event, 'modal-liew-sock-tin')">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-avatar"><img src="assets/team/liew-sock-tin.png" alt="Liew Sock Tin"></div>
+      <div class="modal-title">
+        <h3>Liew Sock Tin</h3>
+        <div class="modal-role">Associate — Civil &amp; Structural</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('modal-liew-sock-tin')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <div class="modal-section-title">Education</div>
+        <p class="modal-bio">Bachelor of Science in Civil Engineering, KL Infrastructure University College — KLIUC (2012)<br>Master of Construction Contract Management</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Credentials</div>
+        <div class="modal-tags">
+          <span class="modal-tag">Graduate Engineer — BEM (2012)</span>
+          <span class="modal-tag">MSc Contract Management</span>
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">About</div>
+        <p class="modal-bio">More than 6 years of experience in construction consultancy and site technical works. Specialises in RC and steel structural design, project management, infrastructural design, and temporary works.</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Key Projects</div>
+        <ul class="modal-projects">
+          <li>Bridge Data Centres Malaysia III, Kulai KIDEX Johor — data centre campus incl. 132kV substation, generator buildings, 8-storey facility block</li>
+          <li>Plaza Rakyat, Jalan Pudu KL — 4-phase development (Profit Consortium)</li>
+          <li>Data Centre, Cyberjaya — 1 block DC, admin block, SSU units &amp; guardhouse</li>
+          <li>31-storey hotel block, Jalan Magazine, Penang — 25 floors hotel + podium car parks</li>
+          <li>Coldroom, 6-storey office &amp; basement car park, Subang Hitech</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Career History</div>
+        <ul class="modal-career">
+          <li><span class="yr">2024 – Present</span><span>Associate, INOV Consulting Engineer Sdn Bhd</span></li>
+          <li><span class="yr">2019 – Present</span><span>Senior C&amp;S Engineer, YNY Consulting Engineer Sdn Bhd</span></li>
+          <li><span class="yr">2012 – 2019</span><span>Design Engineer, Perunding PL Sdn Bhd</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Ir. Tew Chee Siang -->
+<div class="modal-overlay" id="modal-tew-chee-siang" onclick="closeModalOnOverlay(event, 'modal-tew-chee-siang')">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-avatar"><img src="assets/team/ir-tew-chee-siang.png" alt="Ir. Tew Chee Siang"></div>
+      <div class="modal-title">
+        <h3>Ir. Tew Chee Siang</h3>
+        <div class="modal-role">Associate — Geotechnical</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('modal-tew-chee-siang')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <div class="modal-section-title">Education</div>
+        <p class="modal-bio">Bachelor of Engineering in Civil Engineering, University of Malaya (1999)</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Credentials</div>
+        <div class="modal-tags">
+          <span class="modal-tag">BEM Registered (2013)</span>
+          <span class="modal-tag">MIEM Member</span>
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">About</div>
+        <p class="modal-bio">More than 17 years of experience in geotechnical engineering and civil &amp; structural engineering consultancy. Experienced across residential, commercial, industrial and civil works including earthworks, road &amp; drainage, sewerage, and water supply systems.</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Key Projects</div>
+        <ul class="modal-projects">
+          <li>KLIA2 — proposed development &amp; associated works, Sepang (Package EW02A)</li>
+          <li>Mandai Depot, Thomson Line T201 — Singapore MRT</li>
+          <li>AKLEH Phase 2 — Ampang–KL Elevated Highway</li>
+          <li>Langat 2 Water Treatment Plant Phase 1</li>
+          <li>SUKMA Stadium — Projek Kemudahan Sukan SUKMA Ke-17, Perlis</li>
+          <li>CIQ Immigresen &amp; Jeti Penumpang, Muara Sungai Melaka</li>
+          <li>Louis 23 Luxury Condominium with Car Park Lift, Jalan Semarak, KL</li>
+          <li>Landmark Project, Yangon, Myanmar &amp; Meindo Batam Yard, Indonesia</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Career History</div>
+        <ul class="modal-career">
+          <li><span class="yr">2024 – Present</span><span>Associate, INOV Consulting Engineer Sdn Bhd</span></li>
+          <li><span class="yr">2018 – Present</span><span>Associate, YNY Consulting Engineer Sdn Bhd</span></li>
+          <li><span class="yr">2014 – Present</span><span>Director, KnT Consult Sdn Bhd</span></li>
+          <li><span class="yr">2009 – 2014</span><span>Associate, T&amp;E Geo Engineering</span></li>
+          <li><span class="yr">2004 – 2009</span><span>Technical Manager, Projek Cekap (M) Sdn Bhd</span></li>
+          <li><span class="yr">2002 – 2004</span><span>Assistant Resident Engineer, Minconsult Sdn Bhd</span></li>
+          <li><span class="yr">1999 – 2002</span><span>Geotechnical Engineer, Minconsult Sdn Bhd</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Ir. Dr. Kok Yow Loong -->
+<div class="modal-overlay" id="modal-kok-yow-loong" onclick="closeModalOnOverlay(event, 'modal-kok-yow-loong')">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-avatar"><img src="assets/team/ir-kok-yow-loong.png" alt="Ir. Dr. Kok Yow Loong"></div>
+      <div class="modal-title">
+        <h3>Ir. Dr. Kok Yow Loong</h3>
+        <div class="modal-role">Associate — Geotechnical</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('modal-kok-yow-loong')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <div class="modal-section-title">Education</div>
+        <p class="modal-bio">Bachelor of Science in Civil Engineering, University of Manchester (1997)<br>PhD in Geotechnical Engineering, University of Cambridge (2006)</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Credentials</div>
+        <div class="modal-tags">
+          <span class="modal-tag">PhD — Cambridge</span>
+          <span class="modal-tag">BEM Registered (2008)</span>
+          <span class="modal-tag">MIEM Member</span>
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">About</div>
+        <p class="modal-bio">More than 19 years of experience in geotechnical engineering and civil &amp; structural engineering consultancy. Specialises in soil and foundation design, providing geotechnical support to major construction activities locally and internationally.</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Key Projects</div>
+        <ul class="modal-projects">
+          <li>Bowin 713MW Combined Cycle Power Plant, Thailand</li>
+          <li>Santa Rita 1000MW CCPS, Batangas, Philippines</li>
+          <li>Electrified Double Tracking — Padang Besar–Ipoh, Bidor–Ipoh</li>
+          <li>West Port Jetty Extension, Port Klang</li>
+          <li>Cyberjaya Flagship Zone Phase 1 Development</li>
+          <li>Rawang Bypass &amp; Federal Road Upgrading, Pasir Panjang–Linggi</li>
+          <li>Pujut–Puchong Bridge, Miri, Sarawak</li>
+          <li>Setapak Pump Station, KL</li>
+          <li>Bahru Stainless Integrated Steel Plant, Tanjung Langsat, Johor</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Career History</div>
+        <ul class="modal-career">
+          <li><span class="yr">2024 – Present</span><span>Associate, INOV Consulting Engineer Sdn Bhd</span></li>
+          <li><span class="yr">2018 – Present</span><span>Associate, YNY Consulting Engineer Sdn Bhd</span></li>
+          <li><span class="yr">2014 – Present</span><span>Director, KnT Consult Sdn Bhd</span></li>
+          <li><span class="yr">2006 – 2014</span><span>Associate, Perunding ZKR Sdn Bhd</span></li>
+          <li><span class="yr">2001 – 2006</span><span>PhD Research, University of Cambridge, UK</span></li>
+          <li><span class="yr">1997 – 2001</span><span>Geotechnical Engineer, Minconsult Sdn Bhd</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Wayne Tan -->
+<div class="modal-overlay" id="modal-wayne-tan" onclick="closeModalOnOverlay(event, 'modal-wayne-tan')">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-avatar"><img src="assets/team/wayne-tan.png" alt="Wayne Tan"></div>
+      <div class="modal-title">
+        <h3>Wayne Tan</h3>
+        <div class="modal-role">Design Manager</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('modal-wayne-tan')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <div class="modal-section-title">Education</div>
+        <p class="modal-bio">Bachelor of Science in Civil Engineering<br>Master of Science in Civil Engineering, National Cheng Kung University, Taiwan (2005)</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Specialisation</div>
+        <div class="modal-tags">
+          <span class="modal-tag">RC Structural Design</span>
+          <span class="modal-tag">Steel Structural Design</span>
+          <span class="modal-tag">Infrastructure Design</span>
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">About</div>
+        <p class="modal-bio">Senior civil and structural design engineer with broad experience in RC and steel structural design for high-rise residential, commercial, and transit infrastructure projects in Malaysia and overseas.</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Key Projects</div>
+        <ul class="modal-projects">
+          <li>Pasar Seni Paid Link Bridge — steel link between LRT Pasar Seni Station and KL KTM Station</li>
+          <li>MRT Elevated Station &amp; Works — Section 16, Pusat Bandar Damansara &amp; Semantan (Package S4)</li>
+          <li>34-storey &amp; 18-storey SOHO with 7-storey podium, 34 units commercial, Kajang, Selangor (Kueen Lai Properties)</li>
+          <li>2 blocks 19-storey apartments (166 units) with 5-level car park, Kajang (Orchard Circle)</li>
+          <li>Green Sedayu Bizpark warehouse, Jakarta Barat, Indonesia</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Career History</div>
+        <ul class="modal-career">
+          <li><span class="yr">2024 – Present</span><span>Senior C&amp;S Engineer, INOV Consulting Engineer Sdn Bhd</span></li>
+          <li><span class="yr">2023 – Present</span><span>Senior C&amp;S Engineer, YNY Consulting Engineer Sdn Bhd</span></li>
+          <li><span class="yr">2015 – 2023</span><span>Sr. Civil &amp; Structural Design Engineer, Endeavour Consult Sdn Bhd</span></li>
+          <li><span class="yr">2012 – 2015</span><span>Civil &amp; Structural Design Engineer, TIANG Consultancy Sdn Bhd</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="assets/inov-logo-cropped.png" alt="INOV Consulting Engineer">
+    </div>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="#team">Team</a>
+      <a href="#clients">Clients</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+  <p>
+    © 2024 INOV Consulting Engineer Sdn Bhd
+    <span>· 202401049570 (1595414-T) ·</span>
+    Civil &amp; Structural Engineering Consultant and Project Management
+  </p>
+</footer>
+
+<script>
+  // Tab switching
+  function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Modal open/close
+  function openModal(id) {
+    document.getElementById(id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closeModalOnOverlay(e, id) {
+    if (e.target === e.currentTarget) closeModal(id);
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.open').forEach(el => {
+        el.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    }
+  });
+
+  // Smooth active nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.id;
+    });
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current
+        ? '#4a90c4' : '';
+    });
+  });
+</script>
+
+</body>
+</html>
